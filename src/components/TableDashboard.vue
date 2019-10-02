@@ -3,7 +3,7 @@
     <header>
       <div class="main-object center">
         <img id="logo" src="@/assets/logo-main.png">
-        <h3>STARWARS Version</h3>
+        <h3>STARWARS <br class="br">VERSION</h3>
       </div>
       <div class="header-flex">
         <p>HARUUL ZANGi CTF 2019</p>
@@ -192,6 +192,9 @@ header{
   margin: 0 3%;
   #logo{
     width: 7%;
+  }
+  .br{
+    margin-top: 5px;
   }
   .main-object{
     position: absolute;

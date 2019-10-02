@@ -1,24 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <table>
+      <tr>
+        <td></td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TableDashboard from "./components/TableDashboard.vue";
+import axios from "axios";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    TableDashboard
+  },
+  mounted() {
+    setInterval(() => {
+      axios.get("http://localhost:8000/api/v1/scoreboard", {}).then(res => {
+        console.log("----------------------------");
+        console.log(res.data.data);
+        console.log("----------------------------");
+      });
+    }, 1000)
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <table>
-      <tr>
-        <td></td>
-      </tr>
-    </table>
+    <TableDashboard/>
   </div>
 </template>
 
 <script>
 import TableDashboard from "./components/TableDashboard.vue";
 import axios from "axios";
+import "@/assets/stylesheet.scss";
+import "@/assets/Font/starwars.css";
+
 
 export default {
   name: "app",
@@ -18,24 +17,25 @@ export default {
     TableDashboard
   },
   mounted() {
-    setInterval(() => {
-      axios.get("http://localhost:8000/api/v1/scoreboard", {}).then(res => {
-        console.log("----------------------------");
-        console.log(res.data.data);
-        console.log("----------------------------");
-      });
-    }, 1000)
+    // setInterval(() => {
+    //   axios.get("http://localhost:8000/api/v1/scoreboard", {}).then(res => {
+    //     console.log("----------------------------");
+    //     console.log(res.data.data);
+    //     console.log("----------------------------");
+    //   });
+    // }, 1000)
   }
 };
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+
+  font-family: "STARWARS";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /* text-align: center; */
+  color: #fff;
+  margin-top: 2%;
 }
 </style>

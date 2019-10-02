@@ -1,32 +1,167 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+<div>
+    <header>
+      <div class="header-flex">
+        <p>HARUUL ZANGi CTF 2019</p>
+        <img id="logo" src="@/assets/logo-main.png">
+        <p>FINAL ROUND</p>
+      </div>
+    </header>
+    <div class="main-table">
+      <table>
+        <tr>
+          <th>Team Name</th>
+          <th> Task 1</th>
+          <th> Task 2</th>
+          <th> Task 3</th>
+          <th> Task 4</th>
+          <th> Task 5</th>
+          <th> Task 6</th>
+          <th> Task 7</th>
+          <th> Task 8</th>
+          <th> Task 9</th>
+          <th> Task 10</th>
+        <tr>
+        <tr>
+          <td>Team 1</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td>Team 2</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>-</td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td>Team 3</td>
+          <td>1000</td>
+          <td>-</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td>Team 4</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td>Team 5</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td>Team 6</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td>Team 7</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td>Team 8</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td>Team 9</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>250</td>
+          
+        </tr>
+        <tr>
+          <td>Team 10</td>
+          <td>1000</td>
+          <td>350</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>900</td>
+          <td>250</td>
+          <td>900</td>
+        </tr>
+      </table>  
+    </div>
   </div>
 </template>
 
@@ -40,10 +175,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
+<style lang="scss" scoped>
 ul {
   list-style-type: none;
   padding: 0;
@@ -52,7 +184,32 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: #42b983;
+header{
+  margin: 0 3%;
+  #logo{
+    width: 7%;
+  }
+  .header-flex{
+    display: flex;
+    justify-content: space-between;
+    p{
+      font-size: 2vw;
+    }
+  }
 }
-</style>
+.main-table{
+  margin: 3% 3%;
+  table{
+    width: 100%;
+    border-collapse:separate; 
+    border-spacing: 0 2.5em;
+    tr{
+    }
+    td{
+      text-align: center;
+      // color: #EED100;
+      font-size: 1rem;
+    }
+  }
+}
+</style>>

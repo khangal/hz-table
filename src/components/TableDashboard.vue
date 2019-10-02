@@ -1,9 +1,13 @@
 <template>
 <div>
     <header>
+      <div class="main-object center">
+        <img id="logo" src="@/assets/logo-main.png">
+        <h3>STARWARS Version</h3>
+      </div>
       <div class="header-flex">
         <p>HARUUL ZANGi CTF 2019</p>
-        <img id="logo" src="@/assets/logo-main.png">
+        
         <p>FINAL ROUND</p>
       </div>
     </header>
@@ -188,6 +192,10 @@ header{
   margin: 0 3%;
   #logo{
     width: 7%;
+  }
+  .main-object{
+    position: absolute;
+    text-align: center;
   }
   .header-flex{
     display: flex;

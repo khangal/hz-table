@@ -1,181 +1,141 @@
 <template>
-<div>
+  <div>
     <header>
       <div class="main-object center">
-        <img id="logo" src="@/assets/logo-main.png">
-        <h3>STARWARS <br class="br">VERSION</h3>
+        <img id="logo" src="@/assets/logo-main.png" />
+        <h3>STARWARS <br class="br" />VERSION</h3>
       </div>
       <div class="header-flex">
         <p>HARUUL ZANGi CTF 2019</p>
-        
+
         <p>FINAL ROUND</p>
       </div>
     </header>
     <div class="main-table">
       <table>
-        <tr>
-          <th>Team Name</th>
-          <th> Task 1</th>
-          <th> Task 2</th>
-          <th> Task 3</th>
-          <th> Task 4</th>
-          <th> Task 5</th>
-          <th> Task 6</th>
-          <th> Task 7</th>
-          <th> Task 8</th>
-          <th> Task 9</th>
-          <th> Task 10</th>
-        <tr>
-        <tr>
-          <td>Team 1</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>250</td>
+        <thead>
+          <tr>
+            <th>Team Name</th>
+            <th v-for="c in challenges" :key="`${c.name}1`">{{ c.name }}</th>
+            <th>Score</th>
+          </tr>
+        </thead>
 
-        </tr>
-        <tr>
-          <td>Team 2</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>-</td>
-          <td>250</td>
-
-        </tr>
-        <tr>
-          <td>Team 3</td>
-          <td>1000</td>
-          <td>-</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>250</td>
-
-        </tr>
-        <tr>
-          <td>Team 4</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>250</td>
-
-        </tr>
-        <tr>
-          <td>Team 5</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>250</td>
-
-        </tr>
-        <tr>
-          <td>Team 6</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>250</td>
-
-        </tr>
-        <tr>
-          <td>Team 7</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>250</td>
-
-        </tr>
-        <tr>
-          <td>Team 8</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>250</td>
-
-        </tr>
-        <tr>
-          <td>Team 9</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>250</td>
-          
-        </tr>
-        <tr>
-          <td>Team 10</td>
-          <td>1000</td>
-          <td>350</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>900</td>
-          <td>250</td>
-          <td>900</td>
-        </tr>
-      </table>  
+        <transition-group
+          name="team-list"
+          tag="tbody"
+          class="scoreboard"
+          style="z-index:10000"
+        >
+          <tr v-for="t in sortedTeams" :key="t.id">
+            <td>{{ t.name }}</td>
+            <td v-for="c in challenges" :key="c.id">
+              {{ getSolve(c.id, t.id) }}
+            </td>
+            <td>{{ t.score }}</td>
+          </tr>
+        </transition-group>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
+const formatTeams = apiResponse => {
+  return apiResponse.data.data.map(item => {
+    return {
+      id: item.id,
+      name: item.name,
+      score: 0
+    };
+  });
+};
+
+const formatChallenges = apiResponse => {
+  return apiResponse.data.data;
+};
+
+const formatSolves = apiResponse => {
+  if (!apiResponse) {
+    return [];
+  }
+  return apiResponse.data;
+};
+
 export default {
-  name: 'TableDashboard',
+  name: "TableDashboard",
+  data() {
+    return {
+      teams: [],
+      challenges: [],
+      solves: []
+    };
+  },
   props: {
     msg: String
+  },
+
+  async mounted() {
+    this.teams = formatTeams(
+      await axios.get("http://localhost:8000/api/v1/teams")
+    );
+    this.challenges = formatChallenges(
+      await axios.get("http://localhost:8000/api/v1/challenges")
+    );
+
+    setInterval(async () => {
+      let promises = [];
+
+      this.teams.forEach(team => {
+        promises.push(
+          axios.get(`http://localhost:8000/api/v1/teams/${team.id}/solves`)
+        );
+      });
+
+      const solvesByTeams = (await Promise.all(promises)).map(
+        item => item.data && item.data.data
+      );
+
+      let allSolves = [];
+
+      solvesByTeams.forEach((solves, index) => {
+        allSolves = [...allSolves, ...solves];
+
+        this.teams[index].score = solves.reduce((acc, cur) => {
+          if (cur.challenge) {
+            return (acc += cur.challenge.value);
+          } else {
+            return (acc += 0);
+          }
+        }, 0);
+      });
+
+      this.solves = allSolves;
+    }, 1000);
+  },
+
+  methods: {
+    getSolve(challengeId, teamId) {
+      const solution = this.solves.find(
+        solve => solve.challenge_id === challengeId && solve.team === teamId
+      );
+
+      if (solution) {
+        return "✔";
+      } else {
+        return "✘";
+      }
+    }
+  },
+
+  computed: {
+    sortedTeams() {
+      return this.teams.concat().sort((a, b) => b.score - a.score);
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -188,39 +148,46 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-header{
+header {
   margin: 0 3%;
-  #logo{
+  #logo {
     width: 7%;
   }
-  .br{
+  .br {
     margin-top: 5px;
   }
-  .main-object{
+  .main-object {
     position: absolute;
     text-align: center;
   }
-  .header-flex{
+  .header-flex {
     display: flex;
     justify-content: space-between;
-    p{
+    p {
       font-size: 2vw;
     }
   }
 }
-.main-table{
+.main-table {
   margin: 3% 3%;
-  table{
+  table {
     width: 100%;
-    border-collapse:separate; 
+    border-collapse: separate;
     border-spacing: 0 2.5em;
-    tr{
+    tr {
     }
-    td{
+    td {
       text-align: center;
       // color: #EED100;
       font-size: 1rem;
     }
   }
 }
-</style>>
+
+.team-list-move {
+  /* applied to the element when moving */
+  transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: transform 1s;
+}
+
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TableDashboard/>
+    <TableDashboard />
   </div>
 </template>
 

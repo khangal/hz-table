@@ -15,6 +15,7 @@
       <table>
         <thead>
           <tr>
+            <th>Pos</th>
             <th>Team Name</th>
             <th v-for="c in challenges" :key="`${c.name}1`">{{ c.name }}</th>
             <th>Score</th>
@@ -28,6 +29,7 @@
           style="z-index:10000"
         >
           <tr v-for="t in sortedTeams" :key="t.id">
+            <td>{{ t.pos }}</td>
             <td>{{ t.name }}</td>
             <td v-for="c in challenges" :key="c.id">
               {{ getSolve(c.id, t.id) }}
@@ -42,27 +44,21 @@
 
 <script>
 import axios from "axios";
-import { BASE_URL } from "@/constants"
+import { BASE_URL } from "@/constants";
 
 const formatTeams = apiResponse => {
   return apiResponse.data.data.map(item => {
     return {
       id: item.id,
       name: item.name,
-      score: 0
+      score: 0,
+      pos: item.pos || 10
     };
   });
 };
 
 const formatChallenges = apiResponse => {
   return apiResponse.data.data;
-};
-
-const formatSolves = apiResponse => {
-  if (!apiResponse) {
-    return [];
-  }
-  return apiResponse.data;
 };
 
 export default {
@@ -79,9 +75,7 @@ export default {
   },
 
   async mounted() {
-    this.teams = formatTeams(
-      await axios.get(`${BASE_URL}/api/v1/teams`)
-    );
+    this.teams = formatTeams(await axios.get(`${BASE_URL}/api/v1/teams`));
     this.challenges = formatChallenges(
       await axios.get(`${BASE_URL}/api/v1/challenges`)
     );
@@ -90,27 +84,27 @@ export default {
       let promises = [];
 
       this.teams.forEach(team => {
-        promises.push(
-          axios.get(`${BASE_URL}/api/v1/teams/${team.id}/solves`)
-        );
+        promises.push(axios.get(`${BASE_URL}/api/v1/teams/${team.id}/solves`));
       });
 
-      const solvesByTeams = (await Promise.all(promises)).map(
-        item => item.data && item.data.data
-      );
+      const [resp1, resp2] = await Promise.all([
+        Promise.all(promises),
+        axios.get(`${BASE_URL}/api/v1/scoreboard`)
+      ]);
+
+      const solvesByTeams = resp1.map(item => item.data && item.data.data);
+      const scoreboard = resp2.data.data;
+
+      scoreboard.forEach(item => {
+        let team = this.teams.find(team => team.name === item.name);
+        team.score = item.score;
+        team.pos = item.pos;
+      });
 
       let allSolves = [];
 
-      solvesByTeams.forEach((solves, index) => {
+      solvesByTeams.forEach((solves) => {
         allSolves = [...allSolves, ...solves];
-
-        this.teams[index].score = solves.reduce((acc, cur) => {
-          if (cur.challenge) {
-            return (acc += cur.challenge.value);
-          } else {
-            return (acc += 0);
-          }
-        }, 0);
       });
 
       this.solves = allSolves;
@@ -133,7 +127,7 @@ export default {
 
   computed: {
     sortedTeams() {
-      return this.teams.concat().sort((a, b) => b.score - a.score);
+      return this.teams.concat().sort((a, b) => a.pos - b.pos);
     }
   }
 };
@@ -190,5 +184,4 @@ header {
   transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
   transition: transform 1s;
 }
-
 </style>

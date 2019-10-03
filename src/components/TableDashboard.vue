@@ -42,6 +42,7 @@
 
 <script>
 import axios from "axios";
+import { BASE_URL } from "@/constants"
 
 const formatTeams = apiResponse => {
   return apiResponse.data.data.map(item => {
@@ -79,10 +80,10 @@ export default {
 
   async mounted() {
     this.teams = formatTeams(
-      await axios.get("http://localhost:8000/api/v1/teams")
+      await axios.get(`${BASE_URL}/api/v1/teams`)
     );
     this.challenges = formatChallenges(
-      await axios.get("http://localhost:8000/api/v1/challenges")
+      await axios.get(`${BASE_URL}/api/v1/challenges`)
     );
 
     setInterval(async () => {
@@ -90,7 +91,7 @@ export default {
 
       this.teams.forEach(team => {
         promises.push(
-          axios.get(`http://localhost:8000/api/v1/teams/${team.id}/solves`)
+          axios.get(`${BASE_URL}/api/v1/teams/${team.id}/solves`)
         );
       });
 

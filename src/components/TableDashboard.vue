@@ -21,7 +21,6 @@
             <th>Score</th>
           </tr>
         </thead>
-
         <transition-group
           name="team-list"
           tag="tbody"
@@ -29,8 +28,10 @@
           style="z-index:10000"
         >
           <tr v-for="t in sortedTeams" :key="t.id">
-            <td>{{ t.pos }}</td>
-            <td>{{ t.name }}</td>
+            <td>{{ t.pos }} .</td>
+            <td>
+              <img class="team-heads" :class="changePosition(t.id)" :src="require(`@/assets/heads/` + t.id +`.png`)">
+              {{ t.name }}</td>
             <td v-for="c in challenges" :key="c.id">
               {{ getSolve(c.id, t.id) }}
             </td>
@@ -122,6 +123,26 @@ export default {
       } else {
         return "✘";
       }
+    },
+    changePosition(id){
+      if(id === 3){
+        return 'margin-head'
+      }
+      else if(id === 2){
+        return 'margin-head'
+      }
+       else if(id === 8){
+        return 'margin-head'
+      }
+       else if(id === 9){
+        return 'margin-head'
+      }
+       else if(id === 4){
+        return 'margin-head'
+      }
+       else if(id === 6){
+        return 'margin-head'
+      }
     }
   },
 
@@ -164,24 +185,34 @@ header {
   }
 }
 .main-table {
-  margin: 3% 3%;
+  margin-top: 3%;
   table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 2.5em;
+    table-layout: fixed;
     tr {
     }
     td {
       text-align: center;
       // color: #EED100;
       font-size: 1rem;
+      position: relative;
     }
   }
 }
-
+.team-heads{
+  width: 30px;
+  // margin-top: -40px;
+  left: -36px;
+  position: absolute;
+}
 .team-list-move {
   /* applied to the element when moving */
   transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
   transition: transform 1s;
+}
+.margin-head{
+  margin-top: -7px;
 }
 </style>

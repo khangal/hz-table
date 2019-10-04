@@ -17,13 +17,7 @@
           <tr>
             <th>Pos</th>
             <th>Team Name</th>
-            <th>askdjfkasdjf </th>
-            <th>h1</th>
-            <th>h1</th>
-            <th>h1</th>
-            <th>h1</th>
-            <th>h1</th>
-            <th>h1</th>
+	<th v-for="c in challenges" :key="`${c.name}1`">{{ c.name }}</th>
             <th>Score</th>
           </tr>
         </thead>
@@ -131,22 +125,31 @@ export default {
       }
     },
     changePosition(id){
-      if(id === 3){
+      if(id === 7){
+        return 'margin-head'
+      }
+      else if(id === 3){
         return 'margin-head'
       }
       else if(id === 2){
         return 'margin-head'
       }
-       else if(id === 8){
+       else if(id === 39){
         return 'margin-head'
       }
-       else if(id === 9){
+       else if(id === 38){
         return 'margin-head'
       }
-       else if(id === 4){
+       else if(id === 27){
         return 'margin-head'
       }
-       else if(id === 6){
+       else if(id === 37){
+        return 'margin-head'
+      }
+      else if(id === 36){
+        return 'margin-head'
+      }
+      else if(id === 155){
         return 'margin-head'
       }
     }
@@ -181,6 +184,7 @@ header {
   .main-object {
     position: absolute;
     text-align: center;
+    top : 2%;
   }
   .header-flex {
     display: flex;
@@ -189,6 +193,9 @@ header {
       font-size: 2vw;
     }
   }
+}
+header .br{
+    margin-top: 5px;
 }
 .main-table {
   margin-top: 3%;
@@ -219,6 +226,6 @@ header {
   transition: transform 1s;
 }
 .margin-head{
-  margin-top: -7px;
+  margin-top: -10px;
 }
 </style>

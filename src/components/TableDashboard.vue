@@ -17,7 +17,13 @@
           <tr>
             <th>Pos</th>
             <th>Team Name</th>
-            <th v-for="c in challenges" :key="`${c.name}1`">{{ c.name }}</th>
+            <th>askdjfkasdjf </th>
+            <th>h1</th>
+            <th>h1</th>
+            <th>h1</th>
+            <th>h1</th>
+            <th>h1</th>
+            <th>h1</th>
             <th>Score</th>
           </tr>
         </thead>
@@ -28,13 +34,16 @@
           class="scoreboard"
           style="z-index:10000"
         >
-          <tr v-for="t in sortedTeams" :key="t.id">
-            <td>{{ t.pos }}</td>
-            <td>{{ t.name }}</td>
-            <td v-for="c in challenges" :key="c.id">
-              {{ getSolve(c.id, t.id) }}
-            </td>
-            <td>{{ t.score }}</td>
+          <tr>
+            <td>aksdjsa</td>
+            <td>aksdjsa</td>
+            <td>asdkfjasdfkj</td>
+            <td>asdkfjasdfkj</td>
+            <td>asdkfjasdfkj</td>
+            <td>asdkfjasdfkj</td>
+            <td>asdkfjasdfkj</td>
+            <td>asdkfjasdfkj</td>
+            <td>asdkfjasdfkj</td>
           </tr>
         </transition-group>
       </table>
